@@ -14,6 +14,13 @@ function shake() {
     eightBallText.textContent = message;
     fitText();
 
+    const eightBallContainer = document.getElementById("eightBallContainer");
+    eightBallContainer.classList.add("shakeAnimation");
+
+    setTimeout(function() {
+        eightBallContainer.classList.remove("shakeAnimation");
+    },3000);
+
 }
 
 function fitText() {
