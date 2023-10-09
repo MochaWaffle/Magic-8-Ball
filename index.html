@@ -12,18 +12,22 @@
   </head>
   <body>
     <div class="container">
-        <div id="EightBallContainer">
-            <div id="contentContainer">
-                <h1 id="defaultContent">8</h1>
-                <!--
-                <div id="content">
-                    <h1 id="textContent"></h1>
+        <div class="row">
+            <div class="col">
+                <div id="EightBallContainer">
+                    <div id="contentContainer">
+                        <h1 id="defaultContent">8</h1>
+                        <!--
+                        <div id="content">
+                            <h1 id="textContent"></h1>
+                        </div>
+                    -->
+                    </div>
                 </div>
-            -->
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col-12">
                 <form onsubmit="shake(); return false;">
                     <input id="input" class="mt-5 p-2" type="text" placeholder="Enter question..." required>
                     <input type="submit" class="btn btn-warning" value="Enter"></input>
@@ -31,6 +35,8 @@
             </div>
         </div>
     </div>
+        
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
