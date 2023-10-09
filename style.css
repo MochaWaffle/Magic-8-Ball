@@ -57,11 +57,25 @@ body {
     border-top: 200px solid #ac41ba; */
     background-color: purple;
 }
-#inputStyle {
+#input {
     outline: none;
-    border:2px solid rgba(0, 0, 0, 0.404);
+    background: none;
+    border-radius: 5px;
+    border:2px solid #bb36d5;
+    text-align: center;
+    color:white;
 }
-
+#input::placeholder {
+    color:hsl(0, 0%, 100%);
+    text-transform: uppercase;
+    text-align: center;
+}
+#input:focus{
+    border: 2px solid #d38de0;
+    box-shadow: 0 0 0 2px #d38de0,
+    0 0 50px #d38de0,
+    0 0 450px #bb36d5;
+}
 @media (max-width:530px) {
     :root {
         --eightBallContainerSize: 400px;
