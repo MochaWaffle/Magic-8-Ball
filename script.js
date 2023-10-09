@@ -13,13 +13,8 @@ function shake() {
     inputField.value = "";
     eightBallText.textContent = message;
     fitText();
-
-    const eightBallContainer = document.getElementById("eightBallContainer");
-    eightBallContainer.classList.add("shakeAnimation");
-
-    setTimeout(function() {
-        eightBallContainer.classList.remove("shakeAnimation");
-    },3000);
+    startAnimations();
+    
 
 }
 
@@ -35,6 +30,32 @@ function fitText() {
     }
 }
 
+function startAnimations() {
+    const eightBallContainer = document.getElementById("eightBallContainer");
+    eightBallContainer.classList.add("shakeAnimation");
+
+    setTimeout(function() {
+        eightBallContainer.classList.remove("shakeAnimation");
+        startColorFade();
+    },3000);
+}
+
+function startColorFade() {
+    const colorBox = document.getElementById("contentContainer");
+
+    let currentColor = 255;
+    const targetColor = 255;
+    const step = 5;
+
+    const interval = setInterval(function() {
+        if (currentColor < targetColor) {
+            currentColor += step;
+            colorBox.style.backgroundColor = `rgb(${currentColor}, 0, ${currentColor})`;
+        } else {
+            clearInterval(interval);
+        }
+    }, 50);
+}
 window.addEventListener("resize", fitText);
 
 window.addEventListener("load", fitText);
