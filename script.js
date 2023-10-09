@@ -8,16 +8,12 @@ const contentContainer = document.getElementById("contentContainer");
 function shake() {
     var inputField = document.getElementById("input");
     let randomIndex = Math.floor(Math.random() * response.length);
-    var screenWidth = window.innerWidth;
-    var screenHeight = window.innerHeight;
     message = response[randomIndex];
 
     inputField.value = "";
     eightBallText.textContent = message;
     fitText();
-    //console.log(message);
-    console.log("Screen Width: " + screenWidth);
-    console.log("Screen Height: " + screenHeight);
+
 }
 
 function fitText() {
@@ -30,9 +26,6 @@ function fitText() {
         const currentSize = parseFloat(getComputedStyle(eightBallText).fontSize);
         eightBallText.style.fontSize = (currentSize - 1) + "px";
     }
-    console.log("message: ", message);
-    console.log("container width: ", contentWidth);
-    console.log("text width: ", eightBallText.clientWidth);
 }
 
 window.addEventListener("resize", fitText);
