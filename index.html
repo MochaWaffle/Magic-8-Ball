@@ -11,8 +11,24 @@
     <title>Magic 8 Ball</title>
   </head>
   <body>
-    <h1>Magic 8 Ball</h1>
-
+    <div class="container">
+        <div id="EightBallContainer">
+            <div id="contentContainer">
+                <h1 id="defaultContent">8</h1>
+                <!--
+                <div id="content">
+                    <h1 id="textContent"></h1>
+                </div>
+            -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input id="inputStyle" class="mt-5 p-2" type="text" required="required" placeholder="Enter question...">
+                <button class="btn btn-warning">Enter</button>
+            </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
