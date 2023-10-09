@@ -15,7 +15,7 @@ body {
     justify-content: center;
 }
 
-#EightBallContainer {
+#eightBallContainer {
     position: relative;
     background-color: rgb(31, 31, 31);
     border-radius: 50%;
@@ -41,8 +41,9 @@ body {
     justify-content: center;
     border: 10px solid rgb(0, 0, 0);
 }
-#defaultContent {
-    font-size: 50px;
+#eightBallText {
+    font-size: 100px;
+    border: 2px solid red;
 }
 #content {
     display: flex;
@@ -60,6 +61,7 @@ body {
     outline: none;
     border:2px solid rgba(0, 0, 0, 0.404);
 }
+
 @media (max-width:530px) {
     :root {
         --eightBallContainerSize: 400px;
