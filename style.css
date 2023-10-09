@@ -1,5 +1,9 @@
 :root {
     --eightBallContainerSize: 500px;
+    --outlineBoxShadowColor1: 0 0 0 2px #fff5;
+    --outlineBoxShadowColor2: 0 0 50px #3d0982;
+    --outlineBoxShadowColor3: 0 0 450px #bb36d5;
+    --contentContainerColor: white;
 }
 body {
     background-color: rgb(41, 41, 41);
@@ -22,14 +26,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 0 2px #fff5,
-    0 0 50px #3d0982,
-    0 0 450px #bb36d5;
+    box-shadow: var(--outlineBoxShadowColor1),
+    var(--outlineBoxShadowColor2),
+    var(--outlineBoxShadowColor3);
 }
 
 #contentContainer {
     position: relative;
-    background-color: white;
+    background-color: var(--contentContainerColor);
     border-radius: 50%;
     width:60%;
     height:60%;
