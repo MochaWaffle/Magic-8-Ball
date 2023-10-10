@@ -9,47 +9,26 @@ body {
     background-color: rgb(41, 41, 41);
     text-align: center;
 }
-.container{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 #eightBallContainer {
     position: relative;
     background-color: rgb(31, 31, 31);
     border-radius: 50%;
     width: var(--eightBallContainerSize);
     height: var(--eightBallContainerSize);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     box-shadow: var(--outlineBoxShadowColor1),
     var(--outlineBoxShadowColor2),
     var(--outlineBoxShadowColor3);
 }
-
 #contentContainer {
     position: relative;
     background-color: var(--contentContainerColor);
     border-radius: 50%;
     width:60%;
     height:60%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 10px solid rgb(0, 0, 0);
 }
 #eightBallText {
     font-size: 100px;
-}
-#content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: purple;
 }
 #input {
     outline: none;
@@ -69,6 +48,40 @@ body {
     box-shadow: 0 0 0 2px #d38de0,
     0 0 50px #d38de0,
     0 0 450px #bb36d5;
+}
+.container{
+    height: 100vh;
+    flex-direction: column;
+}
+.displayFlex {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.buttonStyle {
+    padding: 7px 50px 7px 50px;
+    border-radius:5px;
+    background-color: transparent;
+    border: 2px solid #bb36d5;
+    color:white;
+    font-size: 18px;
+}
+.buttonStyle:hover {
+    box-shadow:  0 0 0 2px #d38de0,
+    0 0 50px #d38de0,
+    0 0 450px #bb36d5;
+    /* font-size:25px;
+    transform: rotate(30deg); */
+    animation: buttonHoverAnimation 0.5s ease-in-out forwards;
+}
+.buttonStyle:not(hover) {
+    animation: buttonNotHoverAnimation 0.5s ease-in-out forwards;
+}
+.buttonStyle:active {
+    background-color: #834a8d;
+}
+.shakeAnimation {
+    animation: shake 1s ease-in-out infinite;
 }
 @media (max-width:530px) {
     :root {
@@ -125,7 +138,23 @@ body {
         transform: translate(0%, 0%) rotate(0deg);
     }
 }
-
-.shakeAnimation {
-    animation: shake 1s ease-in-out infinite;
+@keyframes buttonHoverAnimation{
+    0% {
+        transform: scale(1) rotate(0deg);
+        font-size:18px; 
+    }
+    100% {
+        transform: scale(1.1) rotate(10deg);
+        font-size: 25px;
+    }
+}
+@keyframes buttonNotHoverAnimation {
+    0% {
+        transform: scale(1.1) rotate(10deg);
+        font-size: 25px;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        font-size: 18px;
+    }
 }
