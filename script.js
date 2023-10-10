@@ -48,7 +48,6 @@ function fitText() {
 
 function startAnimations() {
     const eightBallContainer = document.getElementById("eightBallContainer");
-    const container = document.getElementById("container");
     eightBallContainer.classList.add("shakeAnimation");
 
     setTimeout(function() {
