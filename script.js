@@ -1,4 +1,7 @@
-let message = "";
+const eightBallContainer = document.getElementById("eightBallContainer");
+const contentContainer = document.getElementById("contentContainer");
+const colorBox = document.getElementById("contentContainer");
+const root = document.documentElement;
 const response = {
     "No": "No", 
     "Yes": "Yes", 
@@ -12,26 +15,24 @@ const response = {
     "Sure?": "Yes", 
     "I don't think that's a good idea": "No"
 };
-
+let message = "";
 let eightBallText = document.getElementById("eightBallText");
-const contentContainer = document.getElementById("contentContainer");
-const colorBox = document.getElementById("contentContainer");
-const root = document.documentElement;
 
 function shake() {
     var inputField = document.getElementById("input");
     let randomIndex = Math.floor(Math.random() * Object.keys(response).length);
+
     message = Object.keys(response)[randomIndex];
-    console.log(message);
     inputField.value = "";
     eightBallText.textContent = "8";
+
     colorBox.style.backgroundColor = `rgb(255, 255, 255)`;
     root.style.setProperty("--outlineBoxShadowColor2", "0 0 50px #3d0982");
     root.style.setProperty("--outlineBoxShadowColor3", "0 0 450px #bb36d5");
+
     fitText();
     startAnimations();
     
-
 }
 
 function fitText() {
@@ -47,7 +48,6 @@ function fitText() {
 }
 
 function startAnimations() {
-    const eightBallContainer = document.getElementById("eightBallContainer");
     eightBallContainer.classList.add("shakeAnimation");
 
     setTimeout(function() {
@@ -57,7 +57,7 @@ function startAnimations() {
 }
 
 function startColorFade() {
-    
+    const step = 10;
     let currentColor = 255;
     let currentBoxShadowOneR = 61;
     let currentBoxShadowOneG = 9;
@@ -65,25 +65,9 @@ function startColorFade() {
     let currentBoxShadowTwoR = 187;
     let currentBoxShadowTwoG = 54;
     let currentBoxShadowTwoB = 213;
-    let currentsBoxShadow = [currentBoxShadowOneR, currentBoxShadowOneG, currentBoxShadowOneB, currentBoxShadowTwoR, currentBoxShadowTwoG, currentBoxShadowTwoB];
+    //let currentsBoxShadow = [currentBoxShadowOneR, currentBoxShadowOneG, currentBoxShadowOneB, currentBoxShadowTwoR, currentBoxShadowTwoG, currentBoxShadowTwoB];
     let targetColor = 0;
     //let rgbString = ``;
-    
-    // if (response[message] === "No") {
-    //     targetColor = 255;
-    //     rgbString = `rgb(${currentColor}), 0, 0)`;
-    // } else if (response[message] === "Yes") {
-    //     targetColor = 128;
-    //     rgbString = `rgb(0, ${currentColor}, 0)`;
-    // } else if (response[message] === "Maybe") {
-    //     targetColor = 255;
-    //     rgbString = `rgb(${currentColor}, ${currentColor}, 0)`;
-    // } else {
-    //     targetColor = 255;
-    //     rgbString = `rgb(0, ${currentColor}, 0)`;
-    // }
-    
-    const step = 10;
 
     const interval = setInterval(function() {
         if (currentColor > targetColor) {
@@ -147,8 +131,8 @@ function startColorFade2() {
     let targetBoxShadowTwoR = 0;
     let targetBoxShadowTwoG = 0;
     let targetBoxShadowTwoB = 0;
-    let currents = [currentR, currentG, currentB, currentBoxShadowOneR, currentBoxShadowOneG, currentBoxShadowOneB, currentBoxShadowTwoR, currentBoxShadowTwoG, currentBoxShadowTwoB];
-    let targets = [targetR, targetG, targetB, targetBoxShadowOneR, targetBoxShadowOneG, targetBoxShadowOneB, targetBoxShadowTwoR, targetBoxShadowTwoG, targetBoxShadowTwoB];
+    //let currents = [currentR, currentG, currentB, currentBoxShadowOneR, currentBoxShadowOneG, currentBoxShadowOneB, currentBoxShadowTwoR, currentBoxShadowTwoG, currentBoxShadowTwoB];
+    //slet targets = [targetR, targetG, targetB, targetBoxShadowOneR, targetBoxShadowOneG, targetBoxShadowOneB, targetBoxShadowTwoR, targetBoxShadowTwoG, targetBoxShadowTwoB];
     if (response[message] === "No") {
         targetR = 255;
         targetG = 0;
