@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gabarito&display=swap');
 :root {
     --eightBallContainerSize: 500px;
     --outlineBoxShadowColor1: 0 0 0 2px #fff5;
@@ -6,6 +7,8 @@
     --contentContainerColor: white;
 }
 body {
+    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Gabarito', sans-serif;
     background-color: rgb(41, 41, 41);
     text-align: center;
 }
