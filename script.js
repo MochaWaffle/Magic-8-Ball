@@ -3,17 +3,22 @@ const contentContainer = document.getElementById("contentContainer");
 const colorBox = document.getElementById("contentContainer");
 const root = document.documentElement;
 const response = {
-    "No": "No", 
-    "Yes": "Yes", 
+    "No": "No",
+    "My records say no": "No", 
+    "I 100% think no": "No",
+    "Definitely not": "No",
+    "Yes": "Yes",
+    "I 100% think yes": "Yes",
+    "My records say yes": "Yes", 
+    "Sure": "Yes", 
     "Maybe": "Maybe",
+    "Kind of, but maybe no?": "Maybe",
+    "Perhaps": "Maybe",
+    "Potentially": "Maybe",
     "Reflect and try again later":"Unsure",
     "I cannot answer that, sorry": "Unsure",
     "Do as your heart says": "Unsure", 
-    "Perhaps": "Yes",
-    "You probably should": "Yes", 
-    "You probably should not": "No", 
-    "Sure?": "Yes", 
-    "I don't think that's a good idea": "No"
+    "I honestly don't know": "Unsure",
 };
 let message = "";
 let eightBallText = document.getElementById("eightBallText");
