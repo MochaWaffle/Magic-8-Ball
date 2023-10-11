@@ -75,11 +75,11 @@ body {
     0 0 450px #bb36d5;
     /* font-size:25px;
     transform: rotate(30deg); */
-    animation: buttonHoverAnimation 0.5s ease-in-out forwards;
+    /* animation: buttonHoverAnimation 0.5s ease-in-out forwards; */
 }
-.buttonStyle:not(hover) {
+/* .buttonStyle:not(hover) {
     animation: buttonNotHoverAnimation 0.5s ease-in-out forwards;
-}
+} */
 .buttonStyle:active {
     background-color: #834a8d;
 }
@@ -141,7 +141,7 @@ body {
         transform: translate(0%, 0%) rotate(0deg);
     }
 }
-@keyframes buttonHoverAnimation{
+/* @keyframes buttonHoverAnimation{
     0% {
         transform: scale(1) rotate(0deg);
         font-size:18px; 
@@ -160,4 +160,4 @@ body {
         transform: scale(1) rotate(0deg);
         font-size: 18px;
     }
-}
+} */

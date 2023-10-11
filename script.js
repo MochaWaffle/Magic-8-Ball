@@ -2,6 +2,22 @@ const eightBallContainer = document.getElementById("eightBallContainer");
 const contentContainer = document.getElementById("contentContainer");
 const colorBox = document.getElementById("contentContainer");
 const root = document.documentElement;
+const submitButton = document.getElementById("submitButton");
+
+let currentScale = 1;
+let currentRotation = 0;
+let currentFontSize = 18;
+const targetScale = 1.2;
+const targetRotation = 5;
+const targetFontSize = 25;
+let keyframesStyle = document.styleSheets[0].insertRule(`@keyframes buttonHoverAnimation { 
+    0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
+    100% { transform: scale(${targetScale}) rotate(${targetRotation}deg); font-size: ${targetFontSize}px; } 
+}`, 0);
+let keyframesStyle2 = document.styleSheets[1].insertRule(`@keyframes buttonNotHoverAnimation { 
+    0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
+    100% { transform: scale(1) rotate(0deg); font-size: 18px; } 
+}`, 1);
 const response = {
     "No": "No",
     "My records say no": "No", 
@@ -223,6 +239,56 @@ function startColorFade2() {
         }
 
     }, 25);
+}
+
+submitButton.addEventListener("mouseover", () => {
+    currentScale = getCurrentScale(submitButton);
+    currentRotation = getCurrentRotation(submitButton);
+    currentFontSize = getCurrentFontSize(submitButton);
+
+    console.log("hover: ", currentScale);
+    document.styleSheets[0].deleteRule(0);
+
+    keyframesStyle = document.styleSheets[0].insertRule(`@keyframes buttonHoverAnimation { 
+        0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
+        100% { transform: scale(${targetScale}) rotate(${targetRotation}deg); font-size: ${targetFontSize}px; } 
+    }`, 0);
+
+    submitButton.style.animation = "buttonHoverAnimation 0.3s ease forwards";
+})
+
+submitButton.addEventListener("mouseout", () => {
+    currentScale = getCurrentScale(submitButton);
+    currentRotation = getCurrentRotation(submitButton);
+    currentFontSize = getCurrentFontSize(submitButton);
+
+    console.log("out: ", currentScale);
+    document.styleSheets[1].deleteRule(1);
+
+    keyframesStyle2 = document.styleSheets[1].insertRule(`@keyframes buttonNotHoverAnimation { 
+        0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
+        100% { transform: scale(1) rotate(0deg); font-size: 18px; } 
+    }`, 1);
+    submitButton.style.animation = "buttonNotHoverAnimation 0.3s ease forwards";
+    // submitButton.style.animationDelay = "0s";
+})
+function getCurrentScale(element) {
+    const transform = window.getComputedStyle(element, null).getPropertyValue("transform");
+    const matrix = new DOMMatrix(transform);
+    return matrix.a;
+}
+
+function getCurrentRotation(element) {
+    const transform = window.getComputedStyle(element, null).getPropertyValue("transform");
+    const matrix = new DOMMatrix(transform);
+    const rotation = Math.atan2(matrix.b, matrix.a);
+    const rotationDegree = (rotation * 180) / Math.PI;
+    return rotationDegree;
+}
+
+function getCurrentFontSize(element) {
+    const fontSize = window.getComputedStyle(element, null).getPropertyValue("font-size");
+    return parseFloat(fontSize);
 }
 window.addEventListener("resize", fitText);
 
