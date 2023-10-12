@@ -37,22 +37,27 @@ let keyframesStyle2 = document.styleSheets[1].insertRule(`@keyframes buttonNotHo
     0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
     100% { transform: scale(1) rotate(0deg); font-size: 18px; } 
 }`, 1);
+let animationInProgress = false;
 
 function shake() {
-    var inputField = document.getElementById("input");
-    let randomIndex = Math.floor(Math.random() * Object.keys(response).length);
-
-    message = Object.keys(response)[randomIndex];
-    inputField.value = "";
-    eightBallText.textContent = "8";
-
-    colorCircle.style.backgroundColor = `rgb(255, 255, 255)`;
-    root.style.setProperty("--outlineBoxShadowColor2", "0 0 50px #3d0982");
-    root.style.setProperty("--outlineBoxShadowColor3", "0 0 450px #bb36d5");
-
-    fitText();
-    startAnimations();
+    if (animationInProgress == false) {
+        animationInProgress = true;
+        var inputField = document.getElementById("input");
+        let randomIndex = Math.floor(Math.random() * Object.keys(response).length);
     
+        message = Object.keys(response)[randomIndex];
+        inputField.value = "";
+        eightBallText.textContent = "8";
+    
+        colorCircle.style.backgroundColor = `rgb(255, 255, 255)`;
+        root.style.setProperty("--outlineBoxShadowColor2", "0 0 50px #3d0982");
+        root.style.setProperty("--outlineBoxShadowColor3", "0 0 450px #bb36d5");
+    
+        fitText();
+        startAnimations();
+    } else {
+        return;
+    }
 }
 
 function fitText() {
@@ -229,6 +234,7 @@ function startColorFade2() {
         } else {
             eightBallText.textContent = message;
             fitText();
+            animationInProgress = false;
             clearInterval(intervalTwo);
         }
 
