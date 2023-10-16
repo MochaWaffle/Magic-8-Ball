@@ -1,6 +1,6 @@
 const eightBallContainer = document.getElementById("eightBallContainer");
 const colorCircle = document.getElementById("contentContainer");
-const submitButton = document.getElementById("submitButton");
+const enterButton = document.getElementById("enterButton");
 const root = document.documentElement;
 const targetScale = 1.2;
 const targetRotation = 5;
@@ -39,6 +39,21 @@ let keyframesStyle2 = document.styleSheets[1].insertRule(`@keyframes buttonNotHo
 }`, 1);
 let animationInProgress = false;
 
+// changes the css variables that is used for the 8 ball outline box shadow
+function setRootStyle(boxShadowColor2, boxShadowColor3) {
+    root.style.setProperty("--outlineBoxShadowColor2", boxShadowColor2);
+    root.style.setProperty("--outlineBoxShadowColor3", boxShadowColor3);
+}
+
+// If the animationInProgress is false, animationInProgress is set to true,
+// sets the 8 ball text to 8 and gets a random message to show later over time,
+// the background color around the 8 ball text is set to white initially
+// and will change over time.Otherwise, fits the 8 ball text inside the 8 ball,
+// and calls startAnimation() to start the 8 ball animations. Otherwise, if 
+// animationInProgress is true, the function just returns. This is so if the 8 ball
+// is already shaking, producing a message, and changing it's color, it does not repeat
+// that in the middle of it's animation. In other words, once you press the enter button to shake
+// the 8 ball, you have to wait for the animations to finish before you can shake again.
 function shake() {
     if (animationInProgress == false) {
         animationInProgress = true;
@@ -50,9 +65,8 @@ function shake() {
         eightBallText.textContent = "8";
     
         colorCircle.style.backgroundColor = `rgb(255, 255, 255)`;
-        root.style.setProperty("--outlineBoxShadowColor2", "0 0 50px #3d0982");
-        root.style.setProperty("--outlineBoxShadowColor3", "0 0 450px #bb36d5");
-    
+
+        setRootStyle("0 0 50px #3d0982", "0 0 450px #bb36d5");
         fitText();
         startAnimations();
     } else {
@@ -60,6 +74,7 @@ function shake() {
     }
 }
 
+// fits the 8 ball text inside the circle surrounding it.
 function fitText() {
     const contentWidth = colorCircle.clientWidth - 3;
     const contentHeight = colorCircle.clientHeight - 3;
@@ -72,6 +87,8 @@ function fitText() {
     }
 }
 
+// Makes the 8 ball shake vertically, and after the shake animation is done,
+// the function starts the color fading animations.
 function startAnimations() {
     eightBallContainer.classList.add("shakeAnimation");
 
@@ -81,6 +98,10 @@ function startAnimations() {
     },3000);
 }
 
+// fades the cirlce surrounding the 8 ball text color, and the 8 ball outline
+// box shadow from its default color to black. Then, the function calls startColorFade2()
+// which fades the circle surrounding the 8 ball text color, and the 8 ball outline box shadow
+// from black to the color associated with the type of response the 8 ball produced.
 function startColorFade() {
     const step = 10;
     
@@ -118,9 +139,8 @@ function startColorFade() {
             if (currentBoxShadowTwoB > targetColor) {
                 currentBoxShadowTwoB -= step;
             }
-
-            root.style.setProperty("--outlineBoxShadowColor2", `0 0 50px rgb(${currentBoxShadowOneR}, ${currentBoxShadowOneG}, ${currentBoxShadowOneB})`);
-            root.style.setProperty("--outlineBoxShadowColor3", `0 0 450px rgb(${currentBoxShadowTwoR}, ${currentBoxShadowTwoG}, ${currentBoxShadowTwoB})`);
+            setRootStyle(`0 0 50px rgb(${currentBoxShadowOneR}, ${currentBoxShadowOneG}, ${currentBoxShadowOneB})`, 
+                        `0 0 450px rgb(${currentBoxShadowTwoR}, ${currentBoxShadowTwoG}, ${currentBoxShadowTwoB})`);
         } else {
             
             clearInterval(interval);
@@ -132,6 +152,10 @@ function startColorFade() {
     }, 25);
 }
 
+// Changes the circle surrounding the 8 ball text, and the 8 ball outline box shadow
+// color from black to the color associated with the type of response the 8 ball produced over time.
+// Yes is green, no is red, maybe is yellow, and unsure is blue. After the color animation is done,
+// the 8 ball test is finally shown.
 function startColorFade2() {
     const step = 5;
 
@@ -157,6 +181,7 @@ function startColorFade2() {
     let targetBoxShadowTwoG = 0;
     let targetBoxShadowTwoB = 0;
 
+    // Red
     if (response[message] === "No") {
         targetR = 255;
         targetG = 0;
@@ -167,7 +192,9 @@ function startColorFade2() {
         targetBoxShadowTwoR = 213;
         targetBoxShadowTwoG = 54;
         targetBoxShadowTwoB = 54;
-    } else if (response[message] === "Yes") {
+    } 
+    // Green
+    else if (response[message] === "Yes") {
         targetR = 0;
         targetG = 255;
         targetB = 0;
@@ -177,7 +204,9 @@ function startColorFade2() {
         targetBoxShadowTwoR = 96;
         targetBoxShadowTwoG = 241;
         targetBoxShadowTwoB = 106;
-    } else if (response[message] === "Maybe") {
+    } 
+    // Yellow
+    else if (response[message] === "Maybe") {
         targetR = 255;
         targetG = 255;
         targetB = 0;
@@ -187,7 +216,9 @@ function startColorFade2() {
         targetBoxShadowTwoR = 214;
         targetBoxShadowTwoG = 212;
         targetBoxShadowTwoB = 73;
-    } else {
+    } 
+    // Blue for unsure
+    else {
         targetR = 0;
         targetG = 0;
         targetB = 255;
@@ -198,6 +229,8 @@ function startColorFade2() {
         targetBoxShadowTwoG = 80;
         targetBoxShadowTwoB = 214;
     }
+
+    // Changes the 8 ball colors from black to the target colors.
     const intervalTwo = setInterval(function() {
         if (currentR < targetR || currentG < targetG || currentB < targetB) {
             if (currentR < targetR) {
@@ -232,6 +265,7 @@ function startColorFade2() {
             root.style.setProperty("--outlineBoxShadowColor2", `0 0 50px rgb(${currentBoxShadowOneR}, ${currentBoxShadowOneG}, ${currentBoxShadowOneB})`);
             root.style.setProperty("--outlineBoxShadowColor3", `0 0 450px rgb(${currentBoxShadowTwoR}, ${currentBoxShadowTwoG}, ${currentBoxShadowTwoB})`);
         } else {
+            // shows 8 ball text after color animation is done.
             eightBallText.textContent = message;
             fitText();
             animationInProgress = false;
@@ -241,12 +275,13 @@ function startColorFade2() {
     }, 25);
 }
 
-submitButton.addEventListener("mouseover", () => {
-    currentScale = getCurrentScale(submitButton);
-    currentRotation = getCurrentRotation(submitButton);
-    currentFontSize = getCurrentFontSize(submitButton);
+// When the user hovers over the enter button, first the function gets the current scale, rotation, and font size
+// of the enter button, then does an animation to rotate it, make the scale bigger, and increases the font size.
+enterButton.addEventListener("mouseover", () => {
+    currentScale = getCurrentScale(enterButton);
+    currentRotation = getCurrentRotation(enterButton);
+    currentFontSize = getCurrentFontSize(enterButton);
 
-    console.log("hover: ", currentScale);
     document.styleSheets[0].deleteRule(0);
 
     keyframesStyle = document.styleSheets[0].insertRule(`@keyframes buttonHoverAnimation { 
@@ -254,13 +289,16 @@ submitButton.addEventListener("mouseover", () => {
         100% { transform: scale(${targetScale}) rotate(${targetRotation}deg); font-size: ${targetFontSize}px; } 
     }`, 0);
 
-    submitButton.style.animation = "buttonHoverAnimation 0.3s ease forwards";
+    enterButton.style.animation = "buttonHoverAnimation 0.3s ease forwards";
 })
 
-submitButton.addEventListener("mouseout", () => {
-    currentScale = getCurrentScale(submitButton);
-    currentRotation = getCurrentRotation(submitButton);
-    currentFontSize = getCurrentFontSize(submitButton);
+// When the user stops hovering over the enter button, the function gets the current scale, rotation, and font size
+// of the enter button, and then scales, rotates, and decreases the font size of the enter button to its default scale, rotation,
+// and font size.
+enterButton.addEventListener("mouseout", () => {
+    currentScale = getCurrentScale(enterButton);
+    currentRotation = getCurrentRotation(enterButton);
+    currentFontSize = getCurrentFontSize(enterButton);
 
     console.log("out: ", currentScale);
     document.styleSheets[1].deleteRule(1);
@@ -269,14 +307,17 @@ submitButton.addEventListener("mouseout", () => {
         0% { transform: scale(${currentScale}) rotate(${currentRotation}deg); font-size: ${currentFontSize}px; } 
         100% { transform: scale(1) rotate(0deg); font-size: 18px; } 
     }`, 1);
-    submitButton.style.animation = "buttonNotHoverAnimation 0.3s ease forwards";
+    enterButton.style.animation = "buttonNotHoverAnimation 0.3s ease forwards";
 })
+
+// gets current scale of the enter button.
 function getCurrentScale(element) {
     const transform = window.getComputedStyle(element, null).getPropertyValue("transform");
     const matrix = new DOMMatrix(transform);
     return matrix.a;
 }
 
+// gets current rotation of the enter button.
 function getCurrentRotation(element) {
     const transform = window.getComputedStyle(element, null).getPropertyValue("transform");
     const matrix = new DOMMatrix(transform);
@@ -285,6 +326,7 @@ function getCurrentRotation(element) {
     return rotationDegree;
 }
 
+// gets current font size of the enter button.
 function getCurrentFontSize(element) {
     const fontSize = window.getComputedStyle(element, null).getPropertyValue("font-size");
     return parseFloat(fontSize);
