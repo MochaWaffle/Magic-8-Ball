@@ -1,5 +1,12 @@
-# Magic-8-Ball
-A Magic 8 Ball website that has appealing fluid animations and responsive design.
+# 🪄 Magic-8-Ball 🪄
 
-The website uses CSS Bootstrap and vanilla JavaScript. In-line documentation is
-provided in the code.
+## 💡 About 💡
+- A Magic 8 Ball website that responds to any question with appealing, fluid animations and responsive design.
+
+## ℹ️ More Information ℹ️
+- Uses CSS Bootstrap and vanilla JavaScript.
+
+- In-line documentation is provided in the code.
+
+## 🔗 Visit 🔗
+- https://mochawaffle.github.io/Magic-8-Ball/
